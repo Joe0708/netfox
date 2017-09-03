@@ -1,10 +1,3 @@
-//
-//  NFXDetailsController.swift
-//  netfox
-//
-//  Copyright © 2016 netfox. All rights reserved.
-//
-
 import Foundation
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
@@ -27,10 +20,9 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class NFXDetailsController: NFXGenericController {
+class NetfoxDetailsController: NetfoxViewController {
 
-    enum EDetailsView
-    {
+    enum EDetailsView {
         case info
         case request
         case response
@@ -41,8 +33,7 @@ class NFXDetailsController: NFXGenericController {
         // Do view setup here.
     }
     
-    func getInfoStringFromObject(_ object: NFXHTTPModel) -> NSAttributedString
-    {
+    func getInfoStringFromObject(_ object: NFXHTTPModel) -> NSAttributedString {
         var tempString: String
         tempString = String()
         
@@ -62,8 +53,7 @@ class NFXDetailsController: NFXGenericController {
         return formatNFXString(tempString)
     }
 
-    func getRequestStringFromObject(_ object: NFXHTTPModel) -> NSAttributedString
-    {
+    func getRequestStringFromObject(_ object: NFXHTTPModel) -> NSAttributedString {
         var tempString: String
         tempString = String()
         

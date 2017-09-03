@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class RequestListViewController: NFXListController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchControllerDelegate {
+class RequestListViewController: NetfoxViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchControllerDelegate {
     
     // MARK: UI
     
@@ -13,6 +13,7 @@ class RequestListViewController: NFXListController, UITableViewDelegate, UITable
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 55
+        tableView.separatorInset = .zero
         self.view.addSubview(tableView)
         
         tableView.register(RequestListCell.self, forCellReuseIdentifier: RequestListCell.description())
@@ -38,11 +39,14 @@ class RequestListViewController: NFXListController, UITableViewDelegate, UITable
         searchView.frame.size.height = self.view.frame.width
         searchView.autoresizingMask = [.flexibleWidth]
         searchView.autoresizesSubviews = true
-        searchView.backgroundColor = UIColor.clear
+        searchView.backgroundColor = .clear
         searchView.frame = self.searchController.searchBar.frame
         searchView.addSubview(self.searchController.searchBar)
         return searchView
     }()
+    
+    var tableData = [NFXHTTPModel]()
+    var filteredTableData = [NFXHTTPModel]()
     
     // MARK: View Life Cycle
     
@@ -55,14 +59,14 @@ class RequestListViewController: NFXListController, UITableViewDelegate, UITable
         
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(close)),
-            UIBarButtonItem( image: UIImage.NFXSettings(), style: .plain, target: self, action: #selector(settingsButtonPressed))
+            UIBarButtonItem(image: UIImage.NFXSettings(), style: .plain, target: self, action: #selector(settingsButtonPressed))
         ]
         
         tableView.tableHeaderView = searchView
         
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(NFXListController.reloadTableViewData),
+            selector: #selector(RequestListViewController.reloadTableViewData),
             name: NSNotification.Name(rawValue: "NFXReloadData"),
             object: nil)
         
@@ -79,13 +83,11 @@ class RequestListViewController: NFXListController, UITableViewDelegate, UITable
     }
     
     func settingsButtonPressed() {
-        var settingsController: NFXSettingsController_iOS
-        settingsController = NFXSettingsController_iOS()
-        self.navigationController?.pushViewController(settingsController, animated: true)
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
     
     func close() {
-        NFX.sharedInstance().hide()
+        Netfox.shared.hide()
     }
     
     // MARK: UISearchResultsUpdating
@@ -97,6 +99,17 @@ class RequestListViewController: NFXListController, UITableViewDelegate, UITable
     
     func deactivateSearchController() {
         self.searchController.isActive = false
+    }
+    
+    func updateSearchResultsForSearchControllerWithString(_ searchString: String) {
+        let predicateURL = NSPredicate(format: "requestURLString contains[cd] '\(searchString)'")
+        let predicateMethod = NSPredicate(format: "requestMethod contains[cd] '\(searchString)'")
+        let predicateType = NSPredicate(format: "responseType contains[cd] '\(searchString)'")
+        let predicates = [predicateURL, predicateMethod, predicateType]
+        let searchPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
+        
+        let array = (NFXHTTPModelManager.sharedInstance.getModels as NSArray).filtered(using: searchPredicate)
+        self.filteredTableData = array as! [NFXHTTPModel]
     }
     
     // MARK: UITableViewDataSource
@@ -121,7 +134,7 @@ class RequestListViewController: NFXListController, UITableViewDelegate, UITable
         return cell
     }
     
-    override func reloadTableViewData() {
+    func reloadTableViewData() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.tableView.setNeedsDisplay()
@@ -129,16 +142,9 @@ class RequestListViewController: NFXListController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var detailsController : NFXDetailsController_iOS
-        detailsController = NFXDetailsController_iOS()
-        var model: NFXHTTPModel
-        if (self.searchController.isActive) {
-            model = self.filteredTableData[(indexPath as NSIndexPath).row]
-        } else {
-            model = NFXHTTPModelManager.sharedInstance.getModels[(indexPath as NSIndexPath).row]
-        }
-        detailsController.selectedModel(model)
-        self.navigationController?.pushViewController(detailsController, animated: true)
-        
+        let detailsController = RequestDetailViewController()
+        let model = searchController.isActive ? filteredTableData[indexPath.row] : NFXHTTPModelManager.sharedInstance.getModels[indexPath.row]
+        detailsController.selectedModel = model
+        navigationController?.pushViewController(detailsController, animated: true)
     }
 }

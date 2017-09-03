@@ -7,69 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		778442F11F5BE690009F367E /* RequestListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778442EF1F5BE690009F367E /* RequestListCell.swift */; };
-		778442F21F5BE690009F367E /* RequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778442F01F5BE690009F367E /* RequestListViewController.swift */; };
-		B3F8BA821C833ABC00F9FBEA /* NFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA711C833ABC00F9FBEA /* NFX.swift */; };
-		B3F8BA831C833ABC00F9FBEA /* NFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA711C833ABC00F9FBEA /* NFX.swift */; };
-		B3F8BA841C833ABC00F9FBEA /* NFXAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA721C833ABC00F9FBEA /* NFXAssets.swift */; };
-		B3F8BA851C833ABC00F9FBEA /* NFXAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA721C833ABC00F9FBEA /* NFXAssets.swift */; };
-		B3F8BA881C833ABC00F9FBEA /* NFXDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA741C833ABC00F9FBEA /* NFXDetailsController.swift */; };
-		B3F8BA891C833ABC00F9FBEA /* NFXDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA741C833ABC00F9FBEA /* NFXDetailsController.swift */; };
-		B3F8BA8A1C833ABC00F9FBEA /* NFXGenericBodyDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA751C833ABC00F9FBEA /* NFXGenericBodyDetailsController.swift */; };
-		B3F8BA8B1C833ABC00F9FBEA /* NFXGenericBodyDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA751C833ABC00F9FBEA /* NFXGenericBodyDetailsController.swift */; };
-		B3F8BA8C1C833ABC00F9FBEA /* NFXGenericController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA761C833ABC00F9FBEA /* NFXGenericController.swift */; };
-		B3F8BA8D1C833ABC00F9FBEA /* NFXGenericController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA761C833ABC00F9FBEA /* NFXGenericController.swift */; };
-		B3F8BA8E1C833ABC00F9FBEA /* NFXHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA771C833ABC00F9FBEA /* NFXHelper.swift */; };
-		B3F8BA8F1C833ABC00F9FBEA /* NFXHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA771C833ABC00F9FBEA /* NFXHelper.swift */; };
-		B3F8BA901C833ABC00F9FBEA /* NFXHTTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA781C833ABC00F9FBEA /* NFXHTTPModel.swift */; };
-		B3F8BA911C833ABC00F9FBEA /* NFXHTTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA781C833ABC00F9FBEA /* NFXHTTPModel.swift */; };
-		B3F8BA921C833ABC00F9FBEA /* NFXHTTPModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA791C833ABC00F9FBEA /* NFXHTTPModelManager.swift */; };
-		B3F8BA931C833ABC00F9FBEA /* NFXHTTPModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA791C833ABC00F9FBEA /* NFXHTTPModelManager.swift */; };
-		B3F8BA941C833ABC00F9FBEA /* NFXImageBodyDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA7A1C833ABC00F9FBEA /* NFXImageBodyDetailsController.swift */; };
-		B3F8BA951C833ABC00F9FBEA /* NFXImageBodyDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA7A1C833ABC00F9FBEA /* NFXImageBodyDetailsController.swift */; };
-		B3F8BA961C833ABC00F9FBEA /* NFXInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA7B1C833ABC00F9FBEA /* NFXInfoController.swift */; };
-		B3F8BA971C833ABC00F9FBEA /* NFXInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA7B1C833ABC00F9FBEA /* NFXInfoController.swift */; };
-		B3F8BA981C833ABC00F9FBEA /* NFXListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA7C1C833ABC00F9FBEA /* NFXListController.swift */; };
-		B3F8BA991C833ABC00F9FBEA /* NFXListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA7C1C833ABC00F9FBEA /* NFXListController.swift */; };
-		B3F8BA9A1C833ABC00F9FBEA /* NFXProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA7D1C833ABC00F9FBEA /* NFXProtocol.swift */; };
-		B3F8BA9B1C833ABC00F9FBEA /* NFXProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA7D1C833ABC00F9FBEA /* NFXProtocol.swift */; };
-		B3F8BA9C1C833ABC00F9FBEA /* NFXRawBodyDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA7E1C833ABC00F9FBEA /* NFXRawBodyDetailsController.swift */; };
-		B3F8BA9D1C833ABC00F9FBEA /* NFXRawBodyDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA7E1C833ABC00F9FBEA /* NFXRawBodyDetailsController.swift */; };
-		B3F8BAA01C833ABC00F9FBEA /* NFXStatisticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA801C833ABC00F9FBEA /* NFXStatisticsController.swift */; };
-		B3F8BAA11C833ABC00F9FBEA /* NFXStatisticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA801C833ABC00F9FBEA /* NFXStatisticsController.swift */; };
-		B3F8BAA21C833ABC00F9FBEA /* NFXWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA811C833ABC00F9FBEA /* NFXWindowController.swift */; };
-		B3F8BAA31C833ABC00F9FBEA /* NFXWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BA811C833ABC00F9FBEA /* NFXWindowController.swift */; };
-		B3F8BAAC1C833AC700F9FBEA /* NFXDetailsController_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BAA51C833AC700F9FBEA /* NFXDetailsController_iOS.swift */; };
-		B3F8BAAD1C833AC700F9FBEA /* NFXHelper_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BAA61C833AC700F9FBEA /* NFXHelper_iOS.swift */; };
-		B3F8BAAE1C833AC700F9FBEA /* NFXInfoController_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BAA71C833AC700F9FBEA /* NFXInfoController_iOS.swift */; };
-		B3F8BAB11C833AC700F9FBEA /* NFXSettingsController_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BAAA1C833AC700F9FBEA /* NFXSettingsController_iOS.swift */; };
-		B3F8BAB21C833AC700F9FBEA /* NFXStatisticsController_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F8BAAB1C833AC700F9FBEA /* NFXStatisticsController_iOS.swift */; };
+		776119D41F5C46AA0098AC98 /* Netfox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119CD1F5C46AA0098AC98 /* Netfox.swift */; };
+		776119D51F5C46AA0098AC98 /* NetfoxDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119CE1F5C46AA0098AC98 /* NetfoxDetailsController.swift */; };
+		776119D61F5C46AA0098AC98 /* NetfoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119CF1F5C46AA0098AC98 /* NetfoxViewController.swift */; };
+		776119D71F5C46AA0098AC98 /* NFXHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119D01F5C46AA0098AC98 /* NFXHelper.swift */; };
+		776119D81F5C46AA0098AC98 /* NFXHTTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119D11F5C46AA0098AC98 /* NFXHTTPModel.swift */; };
+		776119D91F5C46AA0098AC98 /* NFXHTTPModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119D21F5C46AA0098AC98 /* NFXHTTPModelManager.swift */; };
+		776119DA1F5C46AA0098AC98 /* NFXProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119D31F5C46AA0098AC98 /* NFXProtocol.swift */; };
+		776119E01F5C46B60098AC98 /* DeviceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119DB1F5C46B60098AC98 /* DeviceInfoViewController.swift */; };
+		776119E11F5C46B60098AC98 /* RequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119DC1F5C46B60098AC98 /* RequestDetailViewController.swift */; };
+		776119E21F5C46B60098AC98 /* RequestListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119DD1F5C46B60098AC98 /* RequestListCell.swift */; };
+		776119E31F5C46B60098AC98 /* RequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119DE1F5C46B60098AC98 /* RequestListViewController.swift */; };
+		776119E41F5C46B60098AC98 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119DF1F5C46B60098AC98 /* SettingsViewController.swift */; };
+		776119E61F5C46C80098AC98 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119E51F5C46C80098AC98 /* Extensions.swift */; };
+		776119E91F5C47100098AC98 /* TextBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119E71F5C47100098AC98 /* TextBrowserViewController.swift */; };
+		776119EA1F5C47100098AC98 /* ImageBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776119E81F5C47100098AC98 /* ImageBrowserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		778442EF1F5BE690009F367E /* RequestListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestListCell.swift; sourceTree = "<group>"; };
-		778442F01F5BE690009F367E /* RequestListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestListViewController.swift; sourceTree = "<group>"; };
+		776119CD1F5C46AA0098AC98 /* Netfox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Netfox.swift; sourceTree = "<group>"; };
+		776119CE1F5C46AA0098AC98 /* NetfoxDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetfoxDetailsController.swift; sourceTree = "<group>"; };
+		776119CF1F5C46AA0098AC98 /* NetfoxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetfoxViewController.swift; sourceTree = "<group>"; };
+		776119D01F5C46AA0098AC98 /* NFXHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXHelper.swift; sourceTree = "<group>"; };
+		776119D11F5C46AA0098AC98 /* NFXHTTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXHTTPModel.swift; sourceTree = "<group>"; };
+		776119D21F5C46AA0098AC98 /* NFXHTTPModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXHTTPModelManager.swift; sourceTree = "<group>"; };
+		776119D31F5C46AA0098AC98 /* NFXProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXProtocol.swift; sourceTree = "<group>"; };
+		776119DB1F5C46B60098AC98 /* DeviceInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoViewController.swift; sourceTree = "<group>"; };
+		776119DC1F5C46B60098AC98 /* RequestDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailViewController.swift; sourceTree = "<group>"; };
+		776119DD1F5C46B60098AC98 /* RequestListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestListCell.swift; sourceTree = "<group>"; };
+		776119DE1F5C46B60098AC98 /* RequestListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestListViewController.swift; sourceTree = "<group>"; };
+		776119DF1F5C46B60098AC98 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		776119E51F5C46C80098AC98 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		776119E71F5C47100098AC98 /* TextBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBrowserViewController.swift; sourceTree = "<group>"; };
+		776119E81F5C47100098AC98 /* ImageBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBrowserViewController.swift; sourceTree = "<group>"; };
 		B3BC020F1C09CDA000C17F3A /* netfox_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = netfox_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3F8BA711C833ABC00F9FBEA /* NFX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFX.swift; sourceTree = "<group>"; };
-		B3F8BA721C833ABC00F9FBEA /* NFXAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXAssets.swift; sourceTree = "<group>"; };
-		B3F8BA741C833ABC00F9FBEA /* NFXDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXDetailsController.swift; sourceTree = "<group>"; };
-		B3F8BA751C833ABC00F9FBEA /* NFXGenericBodyDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXGenericBodyDetailsController.swift; sourceTree = "<group>"; };
-		B3F8BA761C833ABC00F9FBEA /* NFXGenericController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXGenericController.swift; sourceTree = "<group>"; };
-		B3F8BA771C833ABC00F9FBEA /* NFXHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXHelper.swift; sourceTree = "<group>"; };
-		B3F8BA781C833ABC00F9FBEA /* NFXHTTPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXHTTPModel.swift; sourceTree = "<group>"; };
-		B3F8BA791C833ABC00F9FBEA /* NFXHTTPModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXHTTPModelManager.swift; sourceTree = "<group>"; };
-		B3F8BA7A1C833ABC00F9FBEA /* NFXImageBodyDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXImageBodyDetailsController.swift; sourceTree = "<group>"; };
-		B3F8BA7B1C833ABC00F9FBEA /* NFXInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXInfoController.swift; sourceTree = "<group>"; };
-		B3F8BA7C1C833ABC00F9FBEA /* NFXListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXListController.swift; sourceTree = "<group>"; };
-		B3F8BA7D1C833ABC00F9FBEA /* NFXProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXProtocol.swift; sourceTree = "<group>"; };
-		B3F8BA7E1C833ABC00F9FBEA /* NFXRawBodyDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXRawBodyDetailsController.swift; sourceTree = "<group>"; };
-		B3F8BA801C833ABC00F9FBEA /* NFXStatisticsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXStatisticsController.swift; sourceTree = "<group>"; };
-		B3F8BA811C833ABC00F9FBEA /* NFXWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXWindowController.swift; sourceTree = "<group>"; };
-		B3F8BAA51C833AC700F9FBEA /* NFXDetailsController_iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXDetailsController_iOS.swift; sourceTree = "<group>"; };
-		B3F8BAA61C833AC700F9FBEA /* NFXHelper_iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXHelper_iOS.swift; sourceTree = "<group>"; };
-		B3F8BAA71C833AC700F9FBEA /* NFXInfoController_iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXInfoController_iOS.swift; sourceTree = "<group>"; };
-		B3F8BAAA1C833AC700F9FBEA /* NFXSettingsController_iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXSettingsController_iOS.swift; sourceTree = "<group>"; };
-		B3F8BAAB1C833AC700F9FBEA /* NFXStatisticsController_iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFXStatisticsController_iOS.swift; sourceTree = "<group>"; };
 		E20FD2E91C6912D400DCFF61 /* netfox_osx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = netfox_osx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -111,21 +82,14 @@
 		B3F8BA701C833ABC00F9FBEA /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B3F8BA711C833ABC00F9FBEA /* NFX.swift */,
-				B3F8BA721C833ABC00F9FBEA /* NFXAssets.swift */,
-				B3F8BA741C833ABC00F9FBEA /* NFXDetailsController.swift */,
-				B3F8BA751C833ABC00F9FBEA /* NFXGenericBodyDetailsController.swift */,
-				B3F8BA761C833ABC00F9FBEA /* NFXGenericController.swift */,
-				B3F8BA771C833ABC00F9FBEA /* NFXHelper.swift */,
-				B3F8BA781C833ABC00F9FBEA /* NFXHTTPModel.swift */,
-				B3F8BA791C833ABC00F9FBEA /* NFXHTTPModelManager.swift */,
-				B3F8BA7A1C833ABC00F9FBEA /* NFXImageBodyDetailsController.swift */,
-				B3F8BA7B1C833ABC00F9FBEA /* NFXInfoController.swift */,
-				B3F8BA7C1C833ABC00F9FBEA /* NFXListController.swift */,
-				B3F8BA7D1C833ABC00F9FBEA /* NFXProtocol.swift */,
-				B3F8BA7E1C833ABC00F9FBEA /* NFXRawBodyDetailsController.swift */,
-				B3F8BA801C833ABC00F9FBEA /* NFXStatisticsController.swift */,
-				B3F8BA811C833ABC00F9FBEA /* NFXWindowController.swift */,
+				776119CD1F5C46AA0098AC98 /* Netfox.swift */,
+				776119CE1F5C46AA0098AC98 /* NetfoxDetailsController.swift */,
+				776119CF1F5C46AA0098AC98 /* NetfoxViewController.swift */,
+				776119D01F5C46AA0098AC98 /* NFXHelper.swift */,
+				776119D11F5C46AA0098AC98 /* NFXHTTPModel.swift */,
+				776119D21F5C46AA0098AC98 /* NFXHTTPModelManager.swift */,
+				776119D31F5C46AA0098AC98 /* NFXProtocol.swift */,
+				776119E51F5C46C80098AC98 /* Extensions.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -133,13 +97,13 @@
 		B3F8BAA41C833AC700F9FBEA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				778442EF1F5BE690009F367E /* RequestListCell.swift */,
-				778442F01F5BE690009F367E /* RequestListViewController.swift */,
-				B3F8BAA51C833AC700F9FBEA /* NFXDetailsController_iOS.swift */,
-				B3F8BAA61C833AC700F9FBEA /* NFXHelper_iOS.swift */,
-				B3F8BAA71C833AC700F9FBEA /* NFXInfoController_iOS.swift */,
-				B3F8BAAA1C833AC700F9FBEA /* NFXSettingsController_iOS.swift */,
-				B3F8BAAB1C833AC700F9FBEA /* NFXStatisticsController_iOS.swift */,
+				776119E71F5C47100098AC98 /* TextBrowserViewController.swift */,
+				776119E81F5C47100098AC98 /* ImageBrowserViewController.swift */,
+				776119DB1F5C46B60098AC98 /* DeviceInfoViewController.swift */,
+				776119DC1F5C46B60098AC98 /* RequestDetailViewController.swift */,
+				776119DD1F5C46B60098AC98 /* RequestListCell.swift */,
+				776119DE1F5C46B60098AC98 /* RequestListViewController.swift */,
+				776119DF1F5C46B60098AC98 /* SettingsViewController.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -269,28 +233,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3F8BA821C833ABC00F9FBEA /* NFX.swift in Sources */,
-				B3F8BA8A1C833ABC00F9FBEA /* NFXGenericBodyDetailsController.swift in Sources */,
-				B3F8BA901C833ABC00F9FBEA /* NFXHTTPModel.swift in Sources */,
-				B3F8BAB21C833AC700F9FBEA /* NFXStatisticsController_iOS.swift in Sources */,
-				B3F8BAA01C833ABC00F9FBEA /* NFXStatisticsController.swift in Sources */,
-				B3F8BAB11C833AC700F9FBEA /* NFXSettingsController_iOS.swift in Sources */,
-				B3F8BA8E1C833ABC00F9FBEA /* NFXHelper.swift in Sources */,
-				B3F8BAAD1C833AC700F9FBEA /* NFXHelper_iOS.swift in Sources */,
-				778442F11F5BE690009F367E /* RequestListCell.swift in Sources */,
-				B3F8BA9A1C833ABC00F9FBEA /* NFXProtocol.swift in Sources */,
-				B3F8BA941C833ABC00F9FBEA /* NFXImageBodyDetailsController.swift in Sources */,
-				B3F8BAA21C833ABC00F9FBEA /* NFXWindowController.swift in Sources */,
-				B3F8BA841C833ABC00F9FBEA /* NFXAssets.swift in Sources */,
-				B3F8BA8C1C833ABC00F9FBEA /* NFXGenericController.swift in Sources */,
-				B3F8BA921C833ABC00F9FBEA /* NFXHTTPModelManager.swift in Sources */,
-				B3F8BA881C833ABC00F9FBEA /* NFXDetailsController.swift in Sources */,
-				B3F8BA981C833ABC00F9FBEA /* NFXListController.swift in Sources */,
-				B3F8BAAE1C833AC700F9FBEA /* NFXInfoController_iOS.swift in Sources */,
-				778442F21F5BE690009F367E /* RequestListViewController.swift in Sources */,
-				B3F8BA9C1C833ABC00F9FBEA /* NFXRawBodyDetailsController.swift in Sources */,
-				B3F8BA961C833ABC00F9FBEA /* NFXInfoController.swift in Sources */,
-				B3F8BAAC1C833AC700F9FBEA /* NFXDetailsController_iOS.swift in Sources */,
+				776119D51F5C46AA0098AC98 /* NetfoxDetailsController.swift in Sources */,
+				776119E21F5C46B60098AC98 /* RequestListCell.swift in Sources */,
+				776119D71F5C46AA0098AC98 /* NFXHelper.swift in Sources */,
+				776119DA1F5C46AA0098AC98 /* NFXProtocol.swift in Sources */,
+				776119D41F5C46AA0098AC98 /* Netfox.swift in Sources */,
+				776119E11F5C46B60098AC98 /* RequestDetailViewController.swift in Sources */,
+				776119E01F5C46B60098AC98 /* DeviceInfoViewController.swift in Sources */,
+				776119EA1F5C47100098AC98 /* ImageBrowserViewController.swift in Sources */,
+				776119E31F5C46B60098AC98 /* RequestListViewController.swift in Sources */,
+				776119E61F5C46C80098AC98 /* Extensions.swift in Sources */,
+				776119D81F5C46AA0098AC98 /* NFXHTTPModel.swift in Sources */,
+				776119D91F5C46AA0098AC98 /* NFXHTTPModelManager.swift in Sources */,
+				776119D61F5C46AA0098AC98 /* NetfoxViewController.swift in Sources */,
+				776119E91F5C47100098AC98 /* TextBrowserViewController.swift in Sources */,
+				776119E41F5C46B60098AC98 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,21 +255,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3F8BA831C833ABC00F9FBEA /* NFX.swift in Sources */,
-				B3F8BA8B1C833ABC00F9FBEA /* NFXGenericBodyDetailsController.swift in Sources */,
-				B3F8BA911C833ABC00F9FBEA /* NFXHTTPModel.swift in Sources */,
-				B3F8BAA11C833ABC00F9FBEA /* NFXStatisticsController.swift in Sources */,
-				B3F8BA8F1C833ABC00F9FBEA /* NFXHelper.swift in Sources */,
-				B3F8BA9B1C833ABC00F9FBEA /* NFXProtocol.swift in Sources */,
-				B3F8BA951C833ABC00F9FBEA /* NFXImageBodyDetailsController.swift in Sources */,
-				B3F8BAA31C833ABC00F9FBEA /* NFXWindowController.swift in Sources */,
-				B3F8BA851C833ABC00F9FBEA /* NFXAssets.swift in Sources */,
-				B3F8BA8D1C833ABC00F9FBEA /* NFXGenericController.swift in Sources */,
-				B3F8BA931C833ABC00F9FBEA /* NFXHTTPModelManager.swift in Sources */,
-				B3F8BA891C833ABC00F9FBEA /* NFXDetailsController.swift in Sources */,
-				B3F8BA991C833ABC00F9FBEA /* NFXListController.swift in Sources */,
-				B3F8BA9D1C833ABC00F9FBEA /* NFXRawBodyDetailsController.swift in Sources */,
-				B3F8BA971C833ABC00F9FBEA /* NFXInfoController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
