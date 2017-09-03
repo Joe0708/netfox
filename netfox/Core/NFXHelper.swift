@@ -1,19 +1,7 @@
-//
-//  NFXHelper.swift
-//  netfox
-//
-//  Copyright © 2016 netfox. All rights reserved.
-//
-
 import Foundation
-#if os(OSX)
-import Cocoa
-#else
 import UIKit
-#endif
 
-enum HTTPModelShortType: String
-{
+enum HTTPModelShortType: String {
     case JSON = "JSON"
     case XML = "XML"
     case HTML = "HTML"
@@ -23,7 +11,7 @@ enum HTTPModelShortType: String
     static let allValues = [JSON, XML, HTML, IMAGE, OTHER]
 }
 
-extension NFXColor
+extension UIColor
 {
     convenience init(red: Int, green: Int, blue: Int)
     {
@@ -39,106 +27,70 @@ extension NFXColor
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
     
-    class func NFXOrangeColor() -> NFXColor
+    class func NFXOrangeColor() -> UIColor
     {
-        return NFXColor.init(netHex: 0xec5e28)
+        return UIColor.init(netHex: 0xec5e28)
     }
     
-    class func NFXGreenColor() -> NFXColor
+    class func NFXGreenColor() -> UIColor
     {
-        return NFXColor.init(netHex: 0x38bb93)
+        return UIColor.init(netHex: 0x38bb93)
     }
     
-    class func NFXDarkGreenColor() -> NFXColor
+    class func NFXDarkGreenColor() -> UIColor
     {
-        return NFXColor.init(netHex: 0x2d7c6e)
+        return UIColor.init(netHex: 0x2d7c6e)
     }
     
-    class func NFXRedColor() -> NFXColor
+    class func NFXRedColor() -> UIColor
     {
-        return NFXColor.init(netHex: 0xd34a33)
+        return UIColor.init(netHex: 0xd34a33)
     }
     
-    class func NFXDarkRedColor() -> NFXColor
+    class func NFXDarkRedColor() -> UIColor
     {
-        return NFXColor.init(netHex: 0x643026)
+        return UIColor.init(netHex: 0x643026)
     }
     
-    class func NFXStarkWhiteColor() -> NFXColor
+    class func NFXStarkWhiteColor() -> UIColor
     {
-        return NFXColor.init(netHex: 0xccc5b9)
+        return UIColor.init(netHex: 0xccc5b9)
     }
     
-    class func NFXDarkStarkWhiteColor() -> NFXColor
+    class func NFXDarkStarkWhiteColor() -> UIColor
     {
-        return NFXColor.init(netHex: 0x9b958d)
+        return UIColor.init(netHex: 0x9b958d)
     }
     
-    class func NFXLightGrayColor() -> NFXColor
+    class func NFXLightGrayColor() -> UIColor
     {
-        return NFXColor.init(netHex: 0x9b9b9b)
+        return UIColor.init(netHex: 0x9b9b9b)
     }
     
-    class func NFXGray44Color() -> NFXColor
+    class func NFXGray44Color() -> UIColor
     {
-        return NFXColor.init(netHex: 0x707070)
+        return UIColor.init(netHex: 0x707070)
     }
     
-    class func NFXGray95Color() -> NFXColor
+    class func NFXGray95Color() -> UIColor
     {
-        return NFXColor.init(netHex: 0xf2f2f2)
+        return UIColor.init(netHex: 0xf2f2f2)
     }
     
-    class func NFXBlackColor() -> NFXColor
+    class func NFXBlackColor() -> UIColor
     {
-        return NFXColor.init(netHex: 0x231f20)
+        return UIColor.init(netHex: 0x231f20)
     }
-}
-
-extension NFXFont
-{
-#if os(iOS)
-    class func NFXFont(size: CGFloat) -> UIFont
-    {
-        return UIFont(name: "HelveticaNeue", size: size)!
-    }
-    
-    class func NFXFontBold(size: CGFloat) -> UIFont
-    {
-        return UIFont(name: "HelveticaNeue-Bold", size: size)!
-    }
-    
-#elseif os(OSX)
-    class func NFXFont(size: CGFloat) -> NSFont
-    {
-        return NSFont(name: "HelveticaNeue", size: size)!
-    }
-    
-    class func NFXFontBold(size: CGFloat) -> NSFont
-    {
-        return NSFont(name: "HelveticaNeue-Bold", size: size)!
-    }
-#endif
 }
 
 extension URLRequest
 {
-    func getNFXURL() -> String
-    {
-        if (url != nil) {
-            return url!.absoluteString;
-        } else {
-            return "-"
-        }
+    func getNFXURL() -> String {
+        return url != nil ? url!.absoluteString : "Unknown"
     }
     
-    func getNFXMethod() -> String
-    {
-        if (httpMethod != nil) {
-            return httpMethod!
-        } else {
-            return "-"
-        }
+    func getNFXMethod() -> String {
+        return httpMethod ?? "Unknown"
     }
     
     func getNFXCachePolicy() -> String
@@ -174,8 +126,7 @@ extension URLRequest
     }
 }
 
-extension URLResponse
-{
+extension URLResponse {
     func getNFXStatus() -> Int
     {
         return (self as? HTTPURLResponse)?.statusCode ?? 999
@@ -187,104 +138,61 @@ extension URLResponse
     }
 }
 
-extension NFXImage
-{
-    class func NFXSettings() -> NFXImage
-    {
-    #if os (iOS)
+extension UIImage {
+    class func NFXSettings() -> UIImage{
         return UIImage(data: NFXAssets.getImage(NFXAssetName.settings), scale: 1.7)!
-    #elseif os(OSX)
-        return NSImage(data: NFXAssets.getImage(NFXAssetName.settings))!
-    #endif
     }
     
-    class func NFXInfo() -> NFXImage
-    {
-    #if os (iOS)
+    class func NFXInfo() -> UIImage {
         return UIImage(data: NFXAssets.getImage(NFXAssetName.info), scale: 1.7)!
-    #elseif os(OSX)
-        return NSImage(data: NFXAssets.getImage(NFXAssetName.info))!
-    #endif
     }
     
-    class func NFXStatistics() -> NFXImage
-    {
-    #if os (iOS)
+    class func NFXStatistics() -> UIImage {
         return UIImage(data: NFXAssets.getImage(NFXAssetName.statistics), scale: 1.7)!
-    #elseif os(OSX)
-        return NSImage(data: NFXAssets.getImage(NFXAssetName.statistics))!
-    #endif
     }
 }
 
-extension Date
-{
-    func isGreaterThanDate(_ dateToCompare: Date) -> Bool
-    {
-        if self.compare(dateToCompare) == ComparisonResult.orderedDescending {
-            return true
-        } else {
-            return false
-        }
+extension Date {
+    func isGreaterThanDate(_ dateToCompare: Date) -> Bool {
+        return compare(dateToCompare) == ComparisonResult.orderedDescending
     }
 }
 
-class NFXDebugInfo
-{
+class NFXDebugInfo {
     
-    class func getNFXAppName() -> String
-    {
+    class func getNFXAppName() -> String {
         return Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""
     }
     
-    class func getNFXAppVersionNumber() -> String
-    {
+    class func getNFXAppVersionNumber() -> String {
         return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
     
-    class func getNFXAppBuildNumber() -> String
-    {
+    class func getNFXAppBuildNumber() -> String {
         return Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
     }
     
-    class func getNFXBundleIdentifier() -> String
-    {
+    class func getNFXBundleIdentifier() -> String {
         return Bundle.main.bundleIdentifier ?? ""
     }
     
-    class func getNFXOSVersion() -> String
-    {
-    #if os(iOS)
+    class func getNFXOSVersion() -> String {
         return UIDevice.current.systemVersion
-    #elseif os(OSX)
-        return ProcessInfo.processInfo.operatingSystemVersionString
-    #endif
     }
     
-    class func getNFXDeviceType() -> String
-    {
-    #if os(iOS)
-        return UIDevice.getNFXDeviceType() 
-    #elseif os(OSX)
-        return "Not implemented yet. PR welcomes"
-    #endif
+    class func getNFXDeviceType() -> String {
+        return UIDevice.getNFXDeviceType()
     }
     
-    class func getNFXDeviceScreenResolution() -> String
-    {
-    #if os(iOS)
+    class func getNFXDeviceScreenResolution() -> String {
         let scale = UIScreen.main.scale
         let bounds = UIScreen.main.bounds
         let width = bounds.size.width * scale
         let height = bounds.size.height * scale
         return "\(width) x \(height)"
-    #elseif os(OSX)
-        return "0"
-    #endif
     }
     
-    class func getNFXIP(_ completion:@escaping (_ result: String) -> Void)
-    {
+    class func getNFXIP(_ completion:@escaping (_ result: String) -> Void) {
         var req: NSMutableURLRequest
         req = NSMutableURLRequest(url: URL(string: "https://api.ipify.org/?format=json")!)
         URLProtocol.setProperty("1", forKey: "NFXInternal", in: req)
@@ -308,16 +216,14 @@ class NFXDebugInfo
 }
 
 
-struct NFXPath
-{
+struct NFXPath {
     static let Documents = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first! as NSString
     
     static let SessionLog = NFXPath.Documents.appendingPathComponent("session.log");
 }
 
 
-extension String
-{
+extension String {
     func appendToFile(filePath: String) {
         let contentToAppend = self
         

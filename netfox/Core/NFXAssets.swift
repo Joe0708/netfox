@@ -1,10 +1,3 @@
-//
-//  NFXAssets.swift
-//  netfox
-//
-//  Copyright © 2016 netfox. All rights reserved.
-//
-
 import Foundation
 
 enum NFXAssetName {

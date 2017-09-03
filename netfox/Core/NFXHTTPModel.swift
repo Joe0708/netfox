@@ -20,11 +20,14 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class NFXHTTPModel: NSObject
 {
-    var requestURL: String?
-    var requestMethod: String?
+    var requestURL: URL?
+    var requestURLString: String? {
+        return requestURL != nil ? requestURL!.absoluteString : "Unknown"
+    }
+    var requestMethod: String!
     var requestCachePolicy: String?
     var requestDate: Date?
-    var requestTime: String?
+    var requestTime: String!
     var requestTimeout: String?
     var requestHeaders: [AnyHashable: Any]?
     var requestBodyLength: Int?
@@ -35,13 +38,13 @@ class NFXHTTPModel: NSObject
     var responseDate: Date?
     var responseTime: String?
     var responseHeaders: [AnyHashable: Any]?
-    var responseBodyLength: Int?
+    var responseBodyLength: Int = 0
     
     var timeInterval: Float?
     
     var randomHash: NSString?
     
-    var shortType: NSString = HTTPModelShortType.OTHER.rawValue as NSString
+    var shortType = HTTPModelShortType.OTHER.rawValue
     
     var noResponse: Bool = true
     
@@ -49,7 +52,7 @@ class NFXHTTPModel: NSObject
     {
         self.requestDate = Date()
         self.requestTime = getTimeFromDate(self.requestDate!)
-        self.requestURL = request.getNFXURL()
+        self.requestURL = request.url
         self.requestMethod = request.getNFXMethod()
         self.requestCachePolicy = request.getNFXCachePolicy()
         self.requestTimeout = request.getNFXTimeout()
@@ -78,7 +81,7 @@ class NFXHTTPModel: NSObject
         
         if let contentType = headers["Content-Type"] as? String {
             self.responseType = contentType.components(separatedBy: ";")[0]
-            self.shortType = getShortTypeFrom(self.responseType!).rawValue as NSString
+            self.shortType = getShortTypeFrom(self.responseType!).rawValue
         }
         
         self.timeInterval = Float(self.responseDate!.timeIntervalSince(self.requestDate!))
@@ -194,18 +197,14 @@ class NFXHTTPModel: NSObject
         return (try? Data(contentsOf: URL(fileURLWithPath: fromFile)))
     }
     
-    func getTimeFromDate(_ date: Date) -> String?
+    func getTimeFromDate(_ date: Date) -> String
     {
         let calendar = Calendar.current
-        let components = (calendar as NSCalendar).components([.hour, .minute], from: date)
-        guard let hour = components.hour, let minutes = components.minute else {
-            return nil
+        let components = (calendar as NSCalendar).components([.hour, .minute, .second], from: date)
+        guard let hour = components.hour, let minutes = components.minute, let second = components.second else {
+            return "00:00:00"
         }
-        if minutes < 10 {
-            return "\(hour):0\(minutes)"
-        } else {
-            return "\(hour):\(minutes)"
-        }
+        return String(format: "%d:%02d:%d", hour, minutes, second)
     }
     
     func getShortTypeFrom(_ contentType: String) -> HTTPModelShortType
@@ -261,8 +260,8 @@ class NFXHTTPModel: NSObject
     func formattedRequestLogEntry() -> String {
         var log = String()
         
-        if let requestURL = self.requestURL {
-            log.append("-------START REQUEST -  \(requestURL) -------\n")
+        if let requestURLString = self.requestURLString {
+            log.append("-------START REQUEST -  \(requestURLString) -------\n")
         }
 
         if let requestMethod = self.requestMethod {
@@ -291,8 +290,8 @@ class NFXHTTPModel: NSObject
         
         log.append("[Request Body]\n \(getRequestBody())\n")
         
-        if let requestURL = self.requestURL {
-            log.append("-------END REQUEST - \(requestURL) -------\n\n")
+        if let requestURLString = self.requestURLString {
+            log.append("-------END REQUEST - \(requestURLString) -------\n\n")
         }
         
         return log;
@@ -301,8 +300,8 @@ class NFXHTTPModel: NSObject
     func formattedResponseLogEntry() -> String {
         var log = String()
         
-        if let requestURL = self.requestURL {
-            log.append("-------START RESPONSE -  \(requestURL) -------\n")
+        if let requestURLString = self.requestURLString {
+            log.append("-------START RESPONSE -  \(requestURLString) -------\n")
         }
         
         if let responseStatus = self.responseStatus {
@@ -327,8 +326,8 @@ class NFXHTTPModel: NSObject
         
         log.append("[Response Body]\n \(getResponseBody())\n")
         
-        if let requestURL = self.requestURL {
-            log.append("-------END RESPONSE - \(requestURL) -------\n\n")
+        if let requestURLString = self.requestURLString {
+            log.append("-------END RESPONSE - \(requestURLString) -------\n\n")
         }
         
         return log;

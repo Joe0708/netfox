@@ -1,16 +1,6 @@
-//
-//  NFXHelper.swift
-//  netfox
-//
-//  Copyright © 2016 netfox. All rights reserved.
-//
-
-#if os(iOS)
-    
 import UIKit
 
-extension UIWindow
-{
+extension UIWindow {
     override open func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?)
     {
         if NFX.sharedInstance().getSelectedGesture() == .shake {
@@ -23,8 +13,7 @@ extension UIWindow
     }
 }
 
-public extension UIDevice
-{
+public extension UIDevice {
     
     class func getNFXDeviceType() -> String
     {
@@ -85,5 +74,3 @@ public extension UIDevice
     }
 
 }
-
-#endif

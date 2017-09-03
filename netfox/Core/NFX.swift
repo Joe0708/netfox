@@ -7,9 +7,9 @@
 
 import Foundation
 #if os(OSX)
-import Cocoa
+    import Cocoa
 #else
-import UIKit
+    import UIKit
 #endif
 
 let nfxVersion = "1.8"
@@ -19,32 +19,21 @@ let nfxWillOpenNotification = "NFXWillOpenNotification"
 let nfxWillCloseNotification = "NFXWillCloseNotification"
 
 @objc
-open class NFX: NSObject
-{
-    #if os(OSX)
-        var windowController: NFXWindowController?
-        let mainMenu: NSMenu? = NSApp.mainMenu?.items[1].submenu
-        var nfxMenuItem: NSMenuItem = NSMenuItem(title: "netfox", action: #selector(NFX.show), keyEquivalent: String.init(describing: (character: NSF9FunctionKey, length: 1)))
-    #endif
-    
+open class NFX: NSObject {
     // swiftSharedInstance is not accessible from ObjC
-    class var swiftSharedInstance: NFX
-    {
-        struct Singleton
-        {
+    class var swiftSharedInstance: NFX {
+        struct Singleton {
             static let instance = NFX()
         }
         return Singleton.instance
     }
     
     // the sharedInstance class method can be reached from ObjC
-    open class func sharedInstance() -> NFX
-    {
+    open class func sharedInstance() -> NFX {
         return NFX.swiftSharedInstance
     }
     
-    @objc public enum ENFXGesture: Int
-    {
+    @objc public enum ENFXGesture: Int {
         case shake
         case custom
     }
@@ -56,90 +45,61 @@ open class NFX: NSObject
     fileprivate var ignoredURLs = [String]()
     fileprivate var filters = [Bool]()
     fileprivate var lastVisitDate: Date = Date()
-
-    @objc open func start()
-    {
+    
+    @objc open func start() {
         guard !self.started else {
             showMessage("Alredy started!")
             return
         }
-
+        
         self.started = true
         register()
         enable()
         clearOldData()
         showMessage("Started!")
-    #if os(OSX)
-        self.addNetfoxToMainMenu()
-    #endif
     }
     
-    @objc open func stop()
-    {
+    @objc open func stop() {
         unregister()
         disable()
         clearOldData()
         self.started = false
         showMessage("Stopped!")
-    #if os(OSX)
-        self.removeNetfoxFromMainmenu()
-    #endif
     }
     
     fileprivate func showMessage(_ msg: String) {
         print("netfox \(nfxVersion) - [https://github.com/kasketis/netfox]: \(msg)")
     }
     
-    internal func isEnabled() -> Bool
-    {
+    internal func isEnabled() -> Bool {
         return self.enabled
     }
     
-    internal func enable()
-    {
+    internal func enable() {
         self.enabled = true
     }
     
-    internal func disable()
-    {
+    internal func disable() {
         self.enabled = false
     }
     
-    fileprivate func register()
-    {
+    fileprivate func register() {
         URLProtocol.registerClass(NFXProtocol.self)
     }
     
-    fileprivate func unregister()
-    {
+    fileprivate func unregister() {
         URLProtocol.unregisterClass(NFXProtocol.self)
     }
     
-    func motionDetected()
-    {
-        if self.started {
-            if self.presented {
-                hideNFX()
-            } else {
-                showNFX()
-            }
-        }
+    func motionDetected() {
+        if started { presented ? hideNFX() : showNFX() }
     }
     
-    @objc open func setGesture(_ gesture: ENFXGesture)
-    {
+    @objc open func setGesture(_ gesture: ENFXGesture) {
         self.selectedGesture = gesture
-    #if os(OSX)
-        if gesture == .shake {
-            self.addNetfoxToMainMenu()
-        } else {
-            self.removeNetfoxFromMainmenu()
-        }
-    #endif
     }
     
-    @objc open func show()
-    {
+    @objc open func show() {
         if (self.started) && (self.selectedGesture == .custom) {
             showNFX()
         } else {
@@ -147,8 +107,7 @@ open class NFX: NSObject
         }
     }
     
-    @objc open func hide()
-    {
+    @objc open func hide() {
         if (self.started) && (self.selectedGesture == .custom) {
             hideNFX()
         } else {
@@ -156,32 +115,24 @@ open class NFX: NSObject
         }
     }
     
-    @objc open func ignoreURL(_ url: String)
-    {
+    @objc open func ignoreURL(_ url: String) {
         self.ignoredURLs.append(url)
     }
     
-    internal func getLastVisitDate() -> Date
-    {
+    internal func getLastVisitDate() -> Date {
         return self.lastVisitDate
     }
     
-    fileprivate func showNFX()
-    {
-        if self.presented {
-            return
-        }
+    fileprivate func showNFX() {
+        if self.presented { return }
         
         self.showNFXFollowingPlatform()
         self.presented = true
-
+        
     }
     
-    fileprivate func hideNFX()
-    {
-        if !self.presented {
-            return
-        }
+    fileprivate func hideNFX() {
+        if !self.presented { return }
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: "NFXDeactivateSearch"), object: nil)
         self.hideNFXFollowingPlatform { () -> Void in
@@ -190,8 +141,7 @@ open class NFX: NSObject
         }
     }
     
-    internal func clearOldData()
-    {
+    internal func clearOldData() {
         NFXHTTPModelManager.sharedInstance.clear()
         do {
             let documentsPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first!
@@ -206,23 +156,19 @@ open class NFX: NSObject
         } catch {}
     }
     
-    func getIgnoredURLs() -> [String]
-    {
+    func getIgnoredURLs() -> [String] {
         return self.ignoredURLs
     }
     
-    func getSelectedGesture() -> ENFXGesture
-    {
+    func getSelectedGesture() -> ENFXGesture {
         return self.selectedGesture
     }
     
-    func cacheFilters(_ selectedFilters: [Bool])
-    {
+    func cacheFilters(_ selectedFilters: [Bool]) {
         self.filters = selectedFilters
     }
     
-    func getCachedFilters() -> [Bool]
-    {
+    func getCachedFilters() -> [Bool] {
         if self.filters.count == 0 {
             self.filters = [Bool](repeating: true, count: HTTPModelShortType.allValues.count)
         }
@@ -231,86 +177,28 @@ open class NFX: NSObject
     
 }
 
-#if os(iOS)
-
 extension NFX {
     
-    fileprivate func showNFXFollowingPlatform()
-    {
+    fileprivate func showNFXFollowingPlatform() {
         var navigationController: UINavigationController?
         
-        var listController: NFXListController_iOS
-        listController = NFXListController_iOS()
+        let listController = RequestListViewController()
         
         navigationController = UINavigationController(rootViewController: listController)
         navigationController!.navigationBar.isTranslucent = false
-        navigationController!.navigationBar.tintColor = UIColor.NFXOrangeColor()
-        navigationController!.navigationBar.barTintColor = UIColor.NFXStarkWhiteColor()
-        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.NFXOrangeColor()]
         
         presentingViewController?.present(navigationController!, animated: true, completion: nil)
     }
     
-    fileprivate func hideNFXFollowingPlatform(_ completion: (() -> Void)?)
-    {
+    fileprivate func hideNFXFollowingPlatform(_ completion: (() -> Void)?) {
         presentingViewController?.dismiss(animated: true, completion: { () -> Void in
-            if let notNilCompletion = completion {
-                notNilCompletion()
-            }
+            completion?()
         })
     }
     
-    fileprivate var presentingViewController: UIViewController?
-        {
-            let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-            return rootViewController?.presentedViewController ?? rootViewController
+    fileprivate var presentingViewController: UIViewController? {
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        return rootViewController?.presentedViewController ?? rootViewController
     }
     
 }
-
-#elseif os(OSX)
-    
-extension NFX {
-    
-    public func windowDidClose() {
-        self.presented = false
-    }
-    
-    private func setupNetfoxMenuItem() {
-        self.nfxMenuItem.target = self
-        self.nfxMenuItem.action = #selector(NFX.motionDetected)
-        self.nfxMenuItem.keyEquivalent = "n"
-        self.nfxMenuItem.keyEquivalentModifierMask = NSEventModifierFlags(rawValue: UInt(Int(NSEventModifierFlags.command.rawValue | NSEventModifierFlags.shift.rawValue)))
-    }
-    
-    public func addNetfoxToMainMenu() {
-        self.setupNetfoxMenuItem()
-        if let menu = self.mainMenu {
-            menu.insertItem(self.nfxMenuItem, at: 0)
-        }
-    }
-    
-    public func removeNetfoxFromMainmenu() {
-        if let menu = self.mainMenu {
-            menu.removeItem(self.nfxMenuItem)
-        }
-    }
-    
-    public func showNFXFollowingPlatform()  {
-        if self.windowController == nil {
-            self.windowController = NFXWindowController(windowNibName: "NetfoxWindow")
-        }
-        self.windowController?.showWindow(nil)
-    }
-    
-    public func hideNFXFollowingPlatform(completion: (() -> Void)?)
-    {
-        self.windowController?.close()
-        if let notNilCompletion = completion {
-            notNilCompletion()
-        }
-    }
-    
-}
-    
-#endif

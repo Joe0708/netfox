@@ -28,7 +28,7 @@ class NFXRawBodyDetailsController: NFXGenericBodyDetailsController
 		self.bodyView.textAlignment = .left
         self.bodyView.isEditable = false
         self.bodyView.isSelectable = false
-        self.bodyView.font = UIFont.NFXFont(size: 13)
+        self.bodyView.font = UIFont.systemFont(ofSize: 13)
 
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(NFXRawBodyDetailsController.copyLabel))
         self.bodyView.addGestureRecognizer(lpgr)

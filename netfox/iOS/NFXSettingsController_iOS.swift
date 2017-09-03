@@ -1,26 +1,15 @@
-//
-//  NFXSettingsController_iOS.swift
-//  netfox
-//
-//  Copyright © 2016 netfox. All rights reserved.
-//
-
-#if os(iOS)
-    
 import UIKit
-import MessageUI
 
-class NFXSettingsController_iOS: NFXSettingsController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
+class NFXSettingsController_iOS: NFXGenericController, UITableViewDelegate, UITableViewDataSource {
     
     var tableView: UITableView = UITableView()
+    var tableData = [HTTPModelShortType]()
+    var filters = [Bool]()
     
     // MARK: View Life Cycle
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        
-        nfxURL = "https://github.com/kasketis/netfox"
         
         self.title = "Settings"
         
@@ -42,51 +31,21 @@ class NFXSettingsController_iOS: NFXSettingsController, UITableViewDelegate, UIT
         self.tableView.backgroundColor = UIColor.clear
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.tableView.tableFooterView?.isHidden = true
+        tableView.separatorInset = .zero
         self.view.addSubview(self.tableView)
-        
-        var nfxVersionLabel: UILabel
-        nfxVersionLabel = UILabel(frame: CGRect(x: 10, y: self.view.frame.height - 60, width: self.view.frame.width - 2*10, height: 30))
-        nfxVersionLabel.autoresizingMask = [.flexibleTopMargin, .flexibleWidth]
-        nfxVersionLabel.font = UIFont.NFXFont(size: 14)
-        nfxVersionLabel.textColor = UIColor.NFXOrangeColor()
-        nfxVersionLabel.textAlignment = .center
-        nfxVersionLabel.text = nfxVersionString
-        self.view.addSubview(nfxVersionLabel)
-        
-        var nfxURLButton: UIButton
-        nfxURLButton = UIButton(frame: CGRect(x: 10, y: self.view.frame.height - 40, width: self.view.frame.width - 2*10, height: 30))
-        nfxURLButton.autoresizingMask = [.flexibleTopMargin, .flexibleWidth]
-        nfxURLButton.titleLabel?.font = UIFont.NFXFont(size: 12)
-        nfxURLButton.setTitleColor(UIColor.NFXGray44Color(), for: UIControlState())
-        nfxURLButton.titleLabel?.textAlignment = .center
-        nfxURLButton.setTitle(nfxURL, for: UIControlState())
-        nfxURLButton.addTarget(self, action: #selector(NFXSettingsController_iOS.nfxURLButtonPressed), for: .touchUpInside)
-        self.view.addSubview(nfxURLButton)
-        
-        
     }
     
-    override func viewWillDisappear(_ animated: Bool)
-    {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         NFX.sharedInstance().cacheFilters(self.filters)
     }
     
-    func nfxURLButtonPressed()
-    {
-        UIApplication.shared.openURL(URL(string: nfxURL)!)
+    func infoButtonPressed() {
+        self.navigationController?.pushViewController(NFXInfoController_iOS(), animated: true)
     }
     
-    func infoButtonPressed()
-    {
-        var infoController: NFXInfoController_iOS
-        infoController = NFXInfoController_iOS()
-        self.navigationController?.pushViewController(infoController, animated: true)
-    }
-    
-    func statisticsButtonPressed()
-    {
+    func statisticsButtonPressed() {
         var statisticsController: NFXStatisticsController_iOS
         statisticsController = NFXStatisticsController_iOS()
         self.navigationController?.pushViewController(statisticsController, animated: true)
@@ -94,22 +53,17 @@ class NFXSettingsController_iOS: NFXSettingsController, UITableViewDelegate, UIT
     
     // MARK: UITableViewDataSource
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        switch section {
-        case 0: return 1
-        case 1: return self.tableData.count
-        case 2: return 1
-        case 3: return 1
-
-        default: return 0
-        }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return section == 1 ? tableData.count : 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.font = UIFont.NFXFont(size: 14)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         cell.tintColor = UIColor.NFXOrangeColor()
         
         switch (indexPath as NSIndexPath).section
@@ -133,14 +87,14 @@ class NFXSettingsController_iOS: NFXSettingsController, UITableViewDelegate, UIT
             cell.textLabel?.textAlignment = .center
             cell.textLabel?.text = "Share Session Logs"
             cell.textLabel?.textColor = UIColor.NFXGreenColor()
-            cell.textLabel?.font = UIFont.NFXFont(size: 16)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
             return cell
             
         case 3:
             cell.textLabel?.textAlignment = .center
             cell.textLabel?.text = "Clear data"
             cell.textLabel?.textColor = UIColor.NFXRedColor()
-            cell.textLabel?.font = UIFont.NFXFont(size: 16)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 16)
             
             return cell
             
@@ -150,17 +104,11 @@ class NFXSettingsController_iOS: NFXSettingsController, UITableViewDelegate, UIT
         
     }
     
-    func reloadTableData()
-    {
-        DispatchQueue.main.async { () -> Void in
+    func reloadTableData() {
+        DispatchQueue.main.async {
             self.tableView.reloadData()
             self.tableView.setNeedsDisplay()
         }
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int
-    {
-        return 4
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
@@ -175,14 +123,12 @@ class NFXSettingsController_iOS: NFXSettingsController, UITableViewDelegate, UIT
             filtersInfoLabel = UILabel(frame: headerView.bounds)
             filtersInfoLabel.backgroundColor = UIColor.clear
             filtersInfoLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            filtersInfoLabel.font = UIFont.NFXFont(size: 13)
+            filtersInfoLabel.font = UIFont.systemFont(ofSize: 13)
             filtersInfoLabel.textColor = UIColor.NFXGray44Color()
             filtersInfoLabel.textAlignment = .center
             filtersInfoLabel.text = "\nSelect the types of responses that you want to see"
             filtersInfoLabel.numberOfLines = 2
             headerView.addSubview(filtersInfoLabel)
-            
-            
         default: break
         }
         
@@ -190,24 +136,17 @@ class NFXSettingsController_iOS: NFXSettingsController, UITableViewDelegate, UIT
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath as NSIndexPath).section
         {
         case 1:
             let cell = tableView.cellForRow(at: indexPath)
             self.filters[(indexPath as NSIndexPath).row] = !self.filters[(indexPath as NSIndexPath).row]
             configureCell(cell, indexPath: indexPath)
-            break
-            
         case 2:
             shareSessionLogsPressed()
-            break
-            
         case 3:
             clearDataButtonPressedOnTableIndex(indexPath)
-            break
-            
         default: break
         }
         
@@ -215,58 +154,21 @@ class NFXSettingsController_iOS: NFXSettingsController, UITableViewDelegate, UIT
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        switch (indexPath as NSIndexPath).section {
-        case 0: return 44
-        case 1: return 33
-        case 2,3: return 44
-
-        default: return 0
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 1 ? 40 : 20
+    }
+    
+    func configureCell(_ cell: UITableViewCell?, indexPath: IndexPath) {
+        if let `cell` = cell {
+            cell.accessoryType = self.filters[indexPath.row] ? .checkmark : .none
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
-    {        
-        let iPhone4s = (UIScreen.main.bounds.height == 480)
-        switch section {
-        case 0:
-            if iPhone4s {
-                return 20
-            } else {
-                return 40
-            }
-        case 1:
-            if iPhone4s {
-                return 50
-            } else {
-                return 60
-            }
-        case 2, 3:
-            if iPhone4s {
-                return 25
-            } else {
-                return 50
-            }
-            
-        default: return 0
-        }
-    }
-    
-    func configureCell(_ cell: UITableViewCell?, indexPath: IndexPath)
-    {
-        if (cell != nil) {
-            if self.filters[(indexPath as NSIndexPath).row] {
-                cell!.accessoryType = .checkmark
-            } else {
-                cell!.accessoryType = .none
-            }
-        }
-        
-    }
-    
-    func nfxEnabledSwitchValueChanged(_ sender: UISwitch)
-    {
+    func nfxEnabledSwitchValueChanged(_ sender: UISwitch) {
         if sender.isOn {
             NFX.sharedInstance().enable()
         } else {
@@ -274,48 +176,35 @@ class NFXSettingsController_iOS: NFXSettingsController, UITableViewDelegate, UIT
         }
     }
     
-    func clearDataButtonPressedOnTableIndex(_ index: IndexPath)
-    {
-        let actionSheetController: UIAlertController = UIAlertController(title: "Clear data?", message: "", preferredStyle: .actionSheet)
+    func clearDataButtonPressedOnTableIndex(_ index: IndexPath) {
+        let actionSheetController: UIAlertController = UIAlertController(title: "Clear data?", message: "", preferredStyle: .alert)
         actionSheetController.popoverPresentationController?.sourceView = tableView
         actionSheetController.popoverPresentationController?.sourceRect = tableView.rectForRow(at: index)
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-        }
-        actionSheetController.addAction(cancelAction)
-        
-        let yesAction: UIAlertAction = UIAlertAction(title: "Yes", style: .default) { action -> Void in
+        actionSheetController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheetController.addAction(UIAlertAction(title: "Yes", style: .destructive) { _ in
             NFX.sharedInstance().clearOldData()
-        }
-        actionSheetController.addAction(yesAction)
-        
-        let noAction: UIAlertAction = UIAlertAction(title: "No", style: .default) { action -> Void in
-        }
-        actionSheetController.addAction(noAction)
+        })
         
         self.present(actionSheetController, animated: true, completion: nil)
     }
-
-    func shareSessionLogsPressed()
-    {
-        if (MFMailComposeViewController.canSendMail()) {
-            let mailComposer = MFMailComposeViewController()
-            mailComposer.mailComposeDelegate = self
-            
-            mailComposer.setSubject("netfox log - Session Log \(NSDate())")
-            if let sessionLogData = NSData(contentsOfFile: NFXPath.SessionLog as String) {
-                mailComposer.addAttachmentData(sessionLogData as Data, mimeType: "text/plain", fileName: "session.log")
-            }
-            
-            self.present(mailComposer, animated: true, completion: nil)
+    
+    func shareSessionLogsPressed() {
+        
+        let controller = UIActivityViewController(
+            activityItems: [NSURL(fileURLWithPath: NFXPath.SessionLog)],
+            applicationActivities: nil)
+        
+        controller.excludedActivityTypes = [
+            .postToTwitter, .postToFacebook, .postToTencentWeibo, .postToWeibo,
+            .postToFlickr, .postToVimeo, .message, .mail, .addToReadingList,
+            .print, .copyToPasteboard, .assignToContact, .saveToCameraRoll,
+        ]
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            controller.popoverPresentationController?.sourceView = view
+            controller.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.size.width * 0.5, y: UIScreen.main.bounds.size.height * 0.5, width: 10, height: 10)
         }
+        self.present(controller, animated: true, completion: nil)
     }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
-    {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
 }
-
-#endif

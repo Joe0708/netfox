@@ -1,31 +1,20 @@
-//
-//  NFXHTTPModelManager.swift
-//  netfox
-//
-//  Copyright © 2016 netfox. All rights reserved.
-//
-
 import Foundation
 
-private let _sharedInstance = NFXHTTPModelManager()
-
-final class NFXHTTPModelManager: NSObject
-{
+final class NFXHTTPModelManager {
+    
     static let sharedInstance = NFXHTTPModelManager()
+    
     fileprivate var models = [NFXHTTPModel]()
     
-    func add(_ obj: NFXHTTPModel)
-    {
-        self.models.insert(obj, at: 0)
+    func add(_ obj: NFXHTTPModel) {
+        models.insert(obj, at: 0)
     }
     
-    func clear()
-    {
-        self.models.removeAll()
+    func clear() {
+        models.removeAll()
     }
     
-    func getModels() -> [NFXHTTPModel]
-    {        
+    var getModels: [NFXHTTPModel] {
         var predicates = [NSPredicate]()
         
         let filterValues = NFX.sharedInstance().getCachedFilters()
@@ -44,7 +33,7 @@ final class NFXHTTPModelManager: NSObject
 
         let searchPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
         
-        let array = (self.models as NSArray).filtered(using: searchPredicate)
+        let array = (models as NSArray).filtered(using: searchPredicate)
         
         return array as! [NFXHTTPModel]
     }

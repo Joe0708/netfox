@@ -82,9 +82,8 @@ class NFXStatisticsController: NFXGenericController
         return formatNFXString(tempString)
     }
     
-    func generateStatics()
-    {
-        let models = NFXHTTPModelManager.sharedInstance.getModels()
+    func generateStatics() {
+        let models = NFXHTTPModelManager.sharedInstance.getModels
         totalModels = models.count
         
         for model in models {
@@ -99,9 +98,7 @@ class NFXStatisticsController: NFXGenericController
                 totalRequestSize += model.requestBodyLength!
             }
             
-            if (model.responseBodyLength != nil) {
-                totalResponseSize += model.responseBodyLength!
-            }
+            totalResponseSize += model.responseBodyLength
             
             if (model.timeInterval != nil) {
                 totalResponseTime += model.timeInterval!
@@ -114,7 +111,6 @@ class NFXStatisticsController: NFXGenericController
                     self.slowestResponseTime = model.timeInterval!
                 }
             }
-            
         }
     }
     
